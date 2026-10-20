@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV. Angkasa Raya Teknik - Solusi Telekomunikasi & Security System</title>
+
+    <link rel="icon" type="image/png" href="assets/artek.png">
+    <link rel="apple-touch-icon" href="assets/artek.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        biru: { 50:'#eff6ff',100:'#dbeafe',500:'#2563eb',600:'#1d4ed8',700:'#1e40af' },
+                        silver: { 50:'#fafafa',100:'#f4f4f5',200:'#e4e4e7',300:'#d4d4d8',400:'#a1a1aa',500:'#71717a',600:'#52525b',700:'#3f3f46',800:'#27272a',900:'#18181b' },
+                        kuning: { 50:'#fffbeb',100:'#fef3c7',400:'#fbbf24',500:'#f59e0b',600:'#d97706' },
+                        merah: { 50:'#fef2f2',100:'#fee2e2',400:'#f87171',500:'#ef4444',600:'#dc2626' }
+                    },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { scrollbar-width: thin !important; scrollbar-color: #d4d4d8 transparent !important; }
+        *::-webkit-scrollbar { width: 6px !important; }
+        *::-webkit-scrollbar-thumb { background-color: #d4d4d8 !important; border-radius: 9999px !important; }
+        *::-webkit-scrollbar-track { background-color: transparent !important; border-radius: 9999px !important; }
+
+        /* ===== MARQUEE ===== */
+        @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+        .marquee-track { display:flex; width:max-content; animation: marquee 30s linear infinite; }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        @keyframes gallery-slide { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+        .gallery-track { display:flex; gap:1rem; width:max-content; animation: gallery-slide 40s linear infinite; }
+        .gallery-track:hover { animation-play-state: paused; }
+        .gallery-track.slow { animation-duration: 55s; }
+        .gallery-track.fast { animation-duration: 30s; }
+
+        /* ===== HERO ANIM ===== */
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+        @keyframes floatY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+        @keyframes popIn { 0%{opacity:0;transform:scale(0.9);} 60%{opacity:1;transform:scale(1.03);} 100%{opacity:1;transform:scale(1);} }
+        @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.4);} }
+        @keyframes floatOrb { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-20px) scale(1.05);} }
+
+        .hero-anim { opacity:0; animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .hero-anim.d1{animation-delay:.10s;} .hero-anim.d2{animation-delay:.25s;}
+        .hero-anim.d3{animation-delay:.40s;} .hero-anim.d4{animation-delay:.55s;}
+        .hero-anim.d5{animation-delay:.70s;}
+
+        /* ===== HERO SLIDESHOW ===== */
+        .hero-slide {
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-slide.active { opacity: 1; z-index: 1; }
+
+        /* ===== 3D CARD ===== */
+        .card-3d {
+            background: #ffffff;
+            border: 1px solid #e4e4e7;
+            border-radius: 1.25rem;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,1) inset,
+                0 2px 4px rgba(0,0,0,0.03),
+                0 8px 16px -4px rgba(0,0,0,0.05),
+                0 20px 40px -12px rgba(0,0,0,0.06);
+            transition: transform .4s cubic-bezier(0.22,1,0.36,1), box-shadow .4s ease, border-color .3s ease;
+        }
+        .card-3d:hover {
+            transform: translateY(-6px);
+            border-color: #d4d4d8;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,1) inset,
+                0 4px 8px rgba(0,0,0,0.04),
+                0 16px 32px -8px rgba(0,0,0,0.08),
+                0 32px 64px -16px rgba(37,99,235,0.10);
+        }
+
+        /* ===== 3D TOMBOL ===== */
+        .btn-3d {
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.4) inset,
+                0 -2px 0 rgba(0,0,0,0.1) inset,
+                0 4px 0 rgba(29,78,216,0.6),
+                0 8px 16px -4px rgba(37,99,235,0.4);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.4) inset,
+                0 -2px 0 rgba(0,0,0,0.1) inset,
+                0 6px 0 rgba(29,78,216,0.6),
+                0 12px 20px -4px rgba(37,99,235,0.45);
+        }
+        .btn-3d:active {
+            transform: translateY(2px);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.4) inset,
+                0 2px 0 rgba(29,78,216,0.6),
+                0 4px 8px -2px rgba(37,99,235,0.4);
+        }
+
+        .orb-3d { border-radius:50%; filter: blur(60px); animation: floatOrb 12s ease-in-out infinite; }
+
+        /* ===== Aksen tri-color ===== */
+        .tri-line-top {
+            height: 3px;
+            background: linear-gradient(90deg,
+                #2563eb 0%, #2563eb 33.33%,
+                #f59e0b 33.33%, #f59e0b 66.66%,
+                #ef4444 66.66%, #ef4444 100%);
+        }
+        .tri-line-underline {
+            width: 60px; height: 3px; border-radius: 9999px; margin: 1rem auto 0;
+            background: linear-gradient(90deg,
+                #2563eb 0%, #2563eb 33.33%,
+                #f59e0b 33.33%, #f59e0b 66.66%,
+                #ef4444 66.66%, #ef4444 100%);
+        }
+
+        .border-silver { border-color: #e4e4e7; }
+        .divider-silver { height:1px; background:linear-gradient(90deg,transparent,#d4d4d8,transparent); }
+
+        .nav-link { position: relative; padding-bottom: 4px; }
+        .nav-link::after {
+            content:""; position:absolute; bottom:0; left:50%; width:0; height:2px;
+            background: linear-gradient(90deg, #2563eb, #f59e0b, #ef4444);
+            transition: all .3s ease; transform: translateX(-50%); border-radius:2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        #mobile-menu {
+            max-height: 0; overflow: hidden; opacity: 0;
+            transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+        }
+        #mobile-menu.open { max-height: 500px; opacity: 1; }
+        #hamburger-icon .bar { transition: all .3s ease; transform-origin: center; }
+        #hamburger-icon.active .bar-1 { transform: translateY(7px) rotate(45deg); }
+        #hamburger-icon.active .bar-2 { opacity: 0; transform: scaleX(0); }
+        #hamburger-icon.active .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+        .foto-3d {
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.6) inset,
+                0 4px 8px rgba(0,0,0,0.06),
+                0 8px 16px -4px rgba(0,0,0,0.08);
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+        .foto-3d:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.6) inset,
+                0 8px 16px rgba(0,0,0,0.08),
+                0 16px 32px -8px rgba(0,0,0,0.12);
+        }
+
+        .icon-solid {
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.4) inset,
+                0 2px 4px rgba(0,0,0,0.1),
+                0 6px 12px -2px rgba(37,99,235,0.25);
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-biru-500 selection:text-white overflow-x-hidden">
+
+    <div class="fixed top-0 left-0 right-0 tri-line-top z-[60]"></div>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="fixed top-[3px] left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-silver shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-xl bg-white border border-silver-200 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105"
+                     style="box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 8px 16px -4px rgba(0,0,0,0.08);">
+                    <img src="assets/artek.png" alt="Logo Angkasa Raya Teknik" class="w-full h-full object-contain p-1">
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight block text-slate-900 leading-tight">ANGKASA RAYA TEKNIK</span>
+                    <span class="text-xs font-semibold tracking-wider text-slate-500 uppercase">Telekomunikasi & Security</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#tentang" class="nav-link hover:text-biru-500 transition-colors">Tentang</a>
+                <a href="#layanan" class="nav-link hover:text-biru-500 transition-colors">Layanan</a>
+                <a href="#portofolio" class="nav-link hover:text-biru-500 transition-colors">Portofolio</a>
+                <a href="#gallery" class="nav-link hover:text-biru-500 transition-colors">Gallery</a>
+                <a href="#kontak" class="nav-link hover:text-biru-500 transition-colors">Kontak</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#kontak" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-biru-500 text-white font-semibold text-sm btn-3d hover:bg-biru-600">
+                    Hubungi Kami
+                </a>
+                <button id="hamburger-btn" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu"
+                        class="md:hidden w-11 h-11 rounded-xl border border-silver-300 bg-white flex items-center justify-center hover:border-biru-500 transition-colors"
+                        style="box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div id="hamburger-icon" class="flex flex-col gap-1.5 items-center justify-center w-5 h-5">
+                        <span class="bar bar-1 block w-full h-0.5 bg-slate-800 rounded"></span>
+                        <span class="bar bar-2 block w-full h-0.5 bg-slate-800 rounded"></span>
+                        <span class="bar bar-3 block w-full h-0.5 bg-slate-800 rounded"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-silver">
+            <div class="px-4 py-4 space-y-1">
+                <a href="#tentang" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-silver-50 hover:text-biru-500 transition-all">
+                    <i class="fa-solid fa-circle-info w-5 text-biru-500"></i> Tentang
+                </a>
+                <a href="#layanan" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-silver-50 hover:text-biru-500 transition-all">
+                    <i class="fa-solid fa-gears w-5 text-biru-500"></i> Layanan
+                </a>
+                <a href="#portofolio" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-silver-50 hover:text-biru-500 transition-all">
+                    <i class="fa-solid fa-code w-5 text-biru-500"></i> Portofolio
+                </a>
+                <a href="#gallery" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-silver-50 hover:text-biru-500 transition-all">
+                    <i class="fa-solid fa-images w-5 text-biru-500"></i> Gallery
+                </a>
+                <a href="#kontak" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-silver-50 hover:text-biru-500 transition-all">
+                    <i class="fa-solid fa-envelope w-5 text-biru-500"></i> Kontak
+                </a>
+                <a href="#kontak" class="mobile-link mt-3 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-biru-500 text-white font-semibold btn-3d">
+                    <i class="fa-solid fa-paper-plane"></i> Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== RUNNING TEXT BAR ====== -->
+    <div class="fixed top-[84px] left-0 right-0 z-40 bg-white border-b border-silver-200 overflow-hidden">
+        <div class="marquee-track py-2 text-slate-600 text-xs sm:text-sm font-medium">
+            <div class="flex items-center gap-12 px-6 whitespace-nowrap">
+                <span><i class="fa-solid fa-minus mr-2 text-biru-500"></i>Solusi Telekomunikasi & Security System Terpercaya Sejak 2006</span>
+                <span><i class="fa-solid fa-minus mr-2 text-biru-500"></i>Security System • Network • Server • Web & Apps</span>
+                <span><i class="fa-solid fa-minus mr-2 text-biru-500"></i>Dipercaya Instansi Pemerintah & Perusahaan Swasta</span>
+            </div>
+            <div class="flex items-center gap-12 px-6 whitespace-nowrap" aria-hidden="true">
+                <span><i class="fa-solid fa-minus mr-2 text-biru-500"></i>Solusi Telekomunikasi & Security System Terpercaya Sejak 2006</span>
+                <span><i class="fa-solid fa-minus mr-2 text-biru-500"></i>Security System • Network • Server • Web & Apps</span>
+                <span><i class="fa-solid fa-minus mr-2 text-biru-500"></i>Dipercaya Instansi Pemerintah & Perusahaan Swasta</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== HERO ====== -->
+    <section class="relative min-h-screen flex items-center pt-32 overflow-hidden bg-white">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan0.png');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan1.jpg');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan2.jpg');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan3.jpg');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan4.jpg');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan5.jpg');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan6.jpg');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan7.png');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan8.png');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan9.png');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan10.png');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan11.png');"></div>
+            <div class="hero-slide absolute inset-0" style="background-image: url('assets/pekerjaan12.png');"></div>
+
+            <div class="absolute inset-0 bg-white/30 z-[2]"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/10 to-transparent z-[2]"></div>
+        </div>
+
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="orb-3d absolute -top-20 -right-20 w-96 h-96 bg-silver-100 opacity-60"></div>
+            <div class="orb-3d absolute bottom-0 -left-20 w-80 h-80 bg-biru-50 opacity-50" style="animation-delay:-3s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-8 space-y-8">
+                    <h1 class="hero-anim d2 text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight text-slate-900">
+                        Perancangan, Perbaikan, & Pemeliharaan <span class="text-biru-500">Telekomunikasi & Security System</span>
+                    </h1>
+
+                    <p class="hero-anim d3 text-lg text-slate-600 max-w-2xl leading-relaxed">
+                        CV. Angkasa Raya Teknik adalah solusi terpercaya untuk telekomunikasi, security system, serta pembuatan aplikasi web dan Android, melayani instansi, perusahaan swasta, dan berbagai daerah di Indonesia.
+                    </p>
+
+                    <div class="hero-anim d5 pt-8 border-t border-silver-200">
+                        <p class="text-slate-600 leading-relaxed">
+                            <span class="font-bold text-biru-500">Lebih dari 18 tahun pengalaman</span> melayani kebutuhan telekomunikasi, security system, dan infrastruktur IT di berbagai kota/kabupaten dan provinsi di Indonesia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== RUNNING LOGO KLIEN ====== -->
+    <section class="py-12 bg-white border-y border-silver-200 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 mb-6">
+            <p class="text-center text-xs font-bold tracking-widest text-slate-400 uppercase">
+                Instansi Pemerintah • BUMN • Perusahaan Swasta
+            </p>
+        </div>
+        <div class="overflow-hidden">
+            <div class="marquee-track gap-12 py-2">
+                <!-- Set 1 -->
+                <div class="flex items-center gap-12 px-6">
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo1.png" alt="Logo 1" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">POLDA JABAR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo2.png" alt="Logo 2" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">TELKOM INDONESIA</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo3.png" alt="Logo 3" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">KEJAKSAAN JABAR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo4.png" alt="Logo 4" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">PROV JABAR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo5.png" alt="Logo 5" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">KEMENTERIAN PERHUBUNGAN</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo6.png" alt="Logo 6" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">TELKOMSEL</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo7.png" alt="Logo 7" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">DPUTR KAB BANDUNG BARAT</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo8.png" alt="Logo 8" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">DPUPR KAB BLORA</span>
+                    </div>
+                </div>
+                <!-- Set 2 (duplicate untuk loop) -->
+                <div class="flex items-center gap-12 px-6" aria-hidden="true">
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo1.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">POLDA JABAR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo2.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">TELKOM INDONESIA</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo3.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">KEJAKSAAN JABAR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo4.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">PROV JABAR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo5.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">KEMENTERIAN PERHUBUNGAN</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo6.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">TELKOMSEL</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo7.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">DPUTR KAB BANDUNG BARAT</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 hover:text-biru-500 transition-colors whitespace-nowrap">
+                        <img src="assets/logo8.png" alt="" class="h-8 w-auto object-contain">
+                        <span class="font-bold text-sm">DPUPR KAB BLORA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TENTANG & LAYANAN ====== -->
+    <section id="tentang" class="py-24 bg-silver-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Mitra Terpercaya dalam Teknologi & Infrastruktur</h3>
+                <div class="tri-line-underline"></div>
+            </div>
+
+            <!-- Grid Layanan -->
+            <div id="layanan" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-3d p-8 space-y-4">
+                    <div class="icon-solid w-12 h-12 rounded-xl bg-biru-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900">General Contractor</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Bidang usaha meliputi: civil, electrical, instrument, structure, mechanical, kalibrasi, dan piping.
+                    </p>
+                </div>
+                <div class="card-3d p-8 space-y-4">
+                    <div class="icon-solid w-12 h-12 rounded-xl bg-biru-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900">Engineering</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Bidang usaha meliputi: Jasa Maintenance, Kalibrasi, Erection, Instalasi, dan Komisioning.
+                    </p>
+                </div>
+                <div class="card-3d p-8 space-y-4">
+                    <div class="icon-solid w-12 h-12 rounded-xl bg-biru-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900">Supplier</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Pengadaan material kebutuhan industri yang berkualitas dengan harga terbaik serta pengadaan barang telco untuk proyek.
+                    </p>
+                </div>
+                <div class="card-3d p-8 space-y-4">
+                    <div class="icon-solid w-12 h-12 rounded-xl bg-biru-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900">Maintenance Service</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Perawatan berkala dan rutin, serta pengecekan seluruh perangkat dan jaringan listrik.
+                    </p>
+                </div>
+                <div class="card-3d p-8 space-y-4">
+                    <div class="icon-solid w-12 h-12 rounded-xl bg-biru-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900">Web Design & Apps</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Jasa pembuatan website company profile, pengembangan sistem ERP, CRM, POS, dan Mobile Apps.
+                    </p>
+                </div>
+                <div class="card-3d p-8 space-y-4">
+                    <div class="icon-solid w-12 h-12 rounded-xl bg-biru-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900">Server & Jaringan</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Konfigurasi Windows/Linux Server, Maintenance, VPN, Virtual Cloud Server, dan Digital Marketing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PORTOFOLIO (TABEL PREMIUM) ====== -->
+    <section id="portofolio" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-biru-100 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-silver-200 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-biru-500 uppercase">Rekam Jejak Kami</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Portofolio Kerja & Keahlian</h3>
+            </div>
+
+            <!-- Tabel Portofolio Premium -->
+            <div class="card-3d overflow-hidden mb-12 bg-white/80 backdrop-blur-md border border-white">
+                <div class="flex flex-col sm:flex-row justify-between items-center p-6 border-b border-silver-200 bg-silver-50/50">
+                    <div class="flex items-center gap-3 mb-4 sm:mb-0">
+                        <div class="w-10 h-10 rounded-xl bg-biru-500 text-white flex items-center justify-center shadow-lg shadow-biru-500/30">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Daftar Proyek</h4>
+                            <p class="text-xs text-slate-500">Menampilkan 25 proyek pilihan</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 rounded-full bg-biru-50 text-biru-600 border border-biru-100 text-xs font-semibold">Infrastruktur</span>
+                        <span class="px-3 py-1 rounded-full bg-silver-100 text-slate-600 border border-silver-200 text-xs font-semibold">IT & Software</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[800px]">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+                                <th class="py-4 px-6 font-bold text-xs uppercase tracking-wider w-1/2 rounded-tl-lg">Pekerjaan / Proyek</th>
+                                <th class="py-4 px-6 font-bold text-xs uppercase tracking-wider w-1/2 rounded-tr-lg">Client / Instansi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-silver-100 text-sm text-slate-700 bg-white">
+                            <!-- 1 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembangunan Komplek Rumah Dinas Cikancung</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Usaha Perdagangan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Konstruksi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 2 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-snowflake"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Maintenance ACi Telkom (29/03/2022)</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Telkom Indonesia (Persero) Tbk</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Maintenance</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 3 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-tower-cell"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pekerjaan CME Site Tarlawi</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Wideband Media Indonesia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Telekomunikasi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 4 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-tower-cell"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pekerjaan CME Site Doroo</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Wideband Media Indonesia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Telekomunikasi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 5 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-network-wired"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pengembangan Jaringan Internet Local</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Instansi Pemerintah</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 6 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-helmet-safety"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pek. Peng Baham Lainya Kaji Terap</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Pengadaan</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 7 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-warehouse"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Renov Kandang Ayam</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Konstruksi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 8 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-warehouse"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Rehabilitasi Hatchery</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Konstruksi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 9 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-satellite-dish"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">TTC Buaran, Jasa Instalasi & Garansi Site</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Telekomunikasi Selular (Telkomsel)</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Telekomunikasi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 10 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pemeliharaan Gedung Aula</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Maintenance</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 11 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-bolt"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pek. Service UPS Swap System</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Telekomunikasi Selular (Telkomsel)</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Maintenance</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 12 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-video"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembuatan Pemantauan Lalin</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dishub Kota Bandung</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> IT & Smart City</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 13 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-desktop"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembuatan Aplikasi Set Up Videotron</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dishub Kota Bandung</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Software</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 14 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-warehouse"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Renovasi Kandang Ayam</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Konstruksi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 15 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-warehouse"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembangunan Kandang Ayam Modern Petani Milenial</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Konstruksi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 16 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-scale-balanced"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembuatan Pek Barang dan Jasa</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Kejaksaan Tinggi Jawa Barat</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Pengadaan</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 17 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-tower-cell"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Retensi Site Tarlawi</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Wideband Media Indonesia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Telekomunikasi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 18 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-tower-cell"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Retensi Site Doroo</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Wideband Media Indonesia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Telekomunikasi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 19 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-warehouse"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pemb. Cage Colony</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Dinas Ketahanan Pangan dan Peternakan</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Konstruksi</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 20 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-satellite-dish"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pemeliharaan Repeater</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Setda Jawa Barat</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Maintenance</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 21 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-cash-register"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembuatan ERP, Sistem POS dan Keuangan</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Amidef Rekateknik Indonesia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Software Development</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 22 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-mobile-screen"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pembuatan Website dan Mobile Apps</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Lontar Digital Asia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Software Development</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 23 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-video"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Instalasi Listrik AC dan CCTV Indomaret</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">PT. Indomarco Prismatama</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Elektrikal & Security</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 24 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-server"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Konfigurasi dan Perawatan Server</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Kampus Universitas Pendidikan Indonesia</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> IT Infrastructure</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 25 -->
+                            <tr class="hover:bg-biru-50/50 transition-all duration-300 group">
+                                <td class="py-4 px-6 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                                        <i class="fa-solid fa-store"></i>
+                                    </div>
+                                    <span class="font-medium group-hover:translate-x-1 transition-transform">Pengembangan ERP dan CRM Retail</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-slate-900">Isana Mart Retail</span>
+                                        <span class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-tag mr-1"></i> Software Development</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tombol Modal Portofolio Aplikasi -->
+            <div class="text-center">
+                <button onclick="toggleModal()" class="btn-3d inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-biru-500 text-white font-bold text-sm hover:bg-biru-600 transition-all">
+                    <span>Lihat Aplikasi Portofolio Lainnya</span>
+                    <i class="fa-solid fa-up-right-and-down-left-from-center text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+<!-- ====== GALLERY PROYEK BERJALAN ====== -->
+<section id="gallery" class="py-24 bg-silver-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+            <h2 class="text-xs font-bold tracking-widest text-biru-500 uppercase">Dokumentasi Proyek</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Galeri Foto Proyek</h3>
+        </div>
+
+        <div class="space-y-10">
+            
+            <!-- CARD PROYEK 1 -->
+            <div class="card-3d overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-silver-200 bg-white">
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <i class="fa-solid fa-network-wired text-biru-500"></i>
+                            Instalasi Jaringan & Telekomunikasi
+                        </h4>
+                    </div>
+                </div>
+                <div class="overflow-hidden py-6 bg-silver-50">
+                    <div class="gallery-track">
+                        <div class="flex gap-4 px-4">
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto1.png" alt="Foto proyek 1" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto2.png" alt="Foto proyek 2" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto3.png" alt="Foto proyek 3" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto4.png" alt="Foto proyek 4" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto5.png" alt="Foto proyek 5" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto6.png" alt="Foto proyek 6" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/01_pekerjaan/foto7.png" alt="Foto proyek 7" class="w-full h-full object-cover"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD PROYEK 2 -->
+            <div class="card-3d overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-silver-200 bg-white">
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <i class="fa-solid fa-bolt text-biru-500"></i>
+                            Instalasi UPS TTC Telkomsel
+                        </h4>
+                    </div>
+                </div>
+                <div class="overflow-hidden py-6 bg-silver-50">
+                    <div class="gallery-track slow">
+                        <div class="flex gap-4 px-4">
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto1.jpg" alt="Foto Instalasi UPS 1" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto2.jpg" alt="Foto Instalasi UPS 2" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto3.jpg" alt="Foto Instalasi UPS 3" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto4.jpg" alt="Foto Instalasi UPS 4" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto5.jpg" alt="Foto Instalasi UPS 5" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto6.jpg" alt="Foto Instalasi UPS 6" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto7.jpg" alt="Foto Instalasi UPS 7" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto8.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto9.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto10.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto11.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto12.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto13.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto14.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/02_pekerjaan/foto15.jpg" alt="Foto Instalasi UPS 8" class="w-full h-full object-cover"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD PROYEK 3 -->
+            <div class="card-3d overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-silver-200 bg-white">
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <i class="fa-solid fa-shield-halved text-biru-500"></i>
+                            Pengamanan Aset Infrastruktur Telekomunikasi
+                        </h4>
+                    </div>
+              
+                </div>
+                <div class="overflow-hidden py-6 bg-silver-50">
+                    <div class="gallery-track fast">
+                        <div class="flex gap-4 px-4">
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto1.jpg" alt="Foto Security System 1" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto2.jpg" alt="Foto Security System 2" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto3.jpg" alt="Foto Security System 3" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto4.jpg" alt="Foto Security System 4" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto5.jpg" alt="Foto Security System 5" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto6.jpg" alt="Foto Security System 6" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto7.jpg" alt="Foto Security System 7" class="w-full h-full object-cover"></div>
+                        </div>
+                        <div class="flex gap-4 px-4" aria-hidden="true">
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto1.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto2.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto3.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto4.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto5.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto6.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/03_pekerjaan/foto7.jpg" alt="" class="w-full h-full object-cover"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD PROYEK 4 -->
+            <div class="card-3d overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-silver-200 bg-white">
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+                            <i class="fa-solid fa-truck-fast text-biru-500"></i>
+                            Persiapan Logistik Instalasi UPS TTC Telkomsel
+                        </h4>
+                    </div>
+                   
+                </div>
+                <div class="overflow-hidden py-6 bg-silver-50">
+                    <div class="gallery-track">
+                        <div class="flex gap-4 px-4">
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto1.jpg" alt="Foto Logistik UPS 1" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto2.jpg" alt="Foto Logistik UPS 2" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto3.jpg" alt="Foto Logistik UPS 3" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto4.jpg" alt="Foto Logistik UPS 4" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto5.jpg" alt="Foto Logistik UPS 5" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto6.jpg" alt="Foto Logistik UPS 6" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto7.jpg" alt="Foto Logistik UPS 7" class="w-full h-full object-cover"></div>
+                        </div>
+                        <div class="flex gap-4 px-4" aria-hidden="true">
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto1.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto2.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto3.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto4.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto5.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto6.jpg" alt="" class="w-full h-full object-cover"></div>
+                            <div class="foto-3d w-64 h-40 rounded-xl overflow-hidden bg-silver-200 border border-silver-300 flex-shrink-0"><img src="assets/04_pekerjaan/foto7.jpg" alt="" class="w-full h-full object-cover"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- ====== KONTAK ====== -->
+<!-- ====== SPESIFIKASI KAMI ====== -->
+<section id="kontak" class="py-24 bg-white relative overflow-hidden">
+    <!-- Ornamen Background -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-biru-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-silver-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-xs font-bold tracking-widest text-biru-500 uppercase">Keahlian & Layanan</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Spesifikasi Pekerjaan Kami</h3>
+        </div>
+
+        <!-- List Spesifikasi (Vertikal) -->
+        <div class="space-y-6">
+            
+            <!-- 1. Telekomunikasi & Jaringan -->
+            <div class="card-3d p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center group hover:border-biru-500 transition-all duration-300">
+                <div class="w-16 h-16 rounded-2xl bg-biru-50 text-biru-500 flex items-center justify-center flex-shrink-0 group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-tower-cell text-2xl"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">Telekomunikasi & Jaringan</h4>
+                    <p class="text-sm text-slate-600 mb-4">Instalasi, konfigurasi, dan pemeliharaan infrastruktur jaringan berskala lokal hingga nasional.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Instalasi Fiber Optik</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">BTS & Microwave</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">VSAT & Repeater</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Security System -->
+            <div class="card-3d p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center group hover:border-biru-500 transition-all duration-300">
+                <div class="w-16 h-16 rounded-2xl bg-biru-50 text-biru-500 flex items-center justify-center flex-shrink-0 group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">Security System & Pengamanan</h4>
+                    <p class="text-sm text-slate-600 mb-4">Pemasangan dan integrasi sistem keamanan untuk pengamanan aset dan monitoring terpusat.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">CCTV & Access Control</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Sistem Alarm</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Monitoring Aset</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Instalasi Kelistrikan & UPS -->
+            <div class="card-3d p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center group hover:border-biru-500 transition-all duration-300">
+                <div class="w-16 h-16 rounded-2xl bg-biru-50 text-biru-500 flex items-center justify-center flex-shrink-0 group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-bolt text-2xl"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">Instalasi Kelistrikan & UPS</h4>
+                    <p class="text-sm text-slate-600 mb-4">Penyediaan sistem backup daya (UPS) skala besar dan instalasi kelistrikan industri.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Pemasangan UPS</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Panel Listrik</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Mobilisasi Logistik</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. IT & Software Development -->
+            <div class="card-3d p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center group hover:border-biru-500 transition-all duration-300">
+                <div class="w-16 h-16 rounded-2xl bg-biru-50 text-biru-500 flex items-center justify-center flex-shrink-0 group-hover:bg-biru-500 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-laptop-code text-2xl"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">IT & Software Development</h4>
+                    <p class="text-sm text-slate-600 mb-4">Pembuatan aplikasi web, Android, sistem ERP, hingga manajemen server dan data center.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Web & Mobile Apps</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">ERP & CRM</span>
+                        <span class="px-2.5 py-1 rounded-md bg-silver-50 border border-silver-200 text-slate-600 text-xs font-semibold">Konfigurasi Server</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tombol Kontak di Bawah List -->
+        <div class="mt-12 text-center">
+            <a href="https://wa.me/6287742313827" target="_blank" class="btn-3d inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-biru-500 text-white font-bold text-base hover:bg-biru-600 transition-all">
+                <i class="fa-brands fa-whatsapp"></i>
+                Kontak Kami
+            </a>
+        </div>
+
+    </div>
+</section><!-- ====== FOOTER (LENGKAP DENGAN DATA PERUSAHAAN) ====== -->
+<footer class="bg-white pt-16 pb-8 border-t border-silver-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Grid Utama Footer -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
+            
+            <!-- 1. Profil Perusahaan (Kiri) -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-silver-300 flex items-center justify-center overflow-hidden shadow-sm">
+                        <img src="assets/artek.png" alt="Logo AR Teknik" class="w-full h-full object-contain p-1">
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl tracking-tight text-slate-900 block leading-tight">CV. ANGKASA RAYA TEKNIK</span>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Professional Engineering & IT</span>
+                    </div>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Solusi terpercaya di bidang telekomunikasi, security system, electrical, civil engineering, dan information technology di seluruh nusantara. Didirikan sejak tahun 2006.
+                </p>
+                <!-- Badge Legalitas -->
+                <div class="flex flex-wrap gap-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-silver-50 border border-silver-200 text-xs font-semibold text-slate-600">
+                        <i class="fa-solid fa-file-contract text-biru-500"></i> Akta No. 6 (2006)
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-silver-50 border border-silver-200 text-xs font-semibold text-slate-600">
+                        <i class="fa-solid fa-id-card text-biru-500"></i> NPWP: 02.564.309.9
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-silver-50 border border-silver-200 text-xs font-semibold text-slate-600">
+                        <i class="fa-solid fa-handshake text-biru-500"></i> GAPEKSINDO
+                    </span>
+                </div>
+            </div>
+
+            <!-- 2. Informasi Kontak (Tengah) -->
+            <div class="lg:col-span-4 space-y-4">
+                <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wider mb-5">Hubungi Kami</h4>
+                <ul class="space-y-4 text-sm text-slate-600">
+                    <li class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-biru-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fa-solid fa-location-dot text-biru-500"></i>
+                        </div>
+                        <span class="leading-relaxed">Jl. Puspakencana 2B Komplek Bumi Panyawangan RT. 01/23 Desa Cimekar Kec. Cileunyi, Kab. Bandung</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-biru-50 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-phone text-biru-500"></i>
+                        </div>
+                        <span>022 7836759</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-biru-50 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-brands fa-whatsapp text-biru-500 text-lg"></i>
+                        </div>
+                        <a href="https://wa.me/6287742313827" target="_blank" class="hover:text-biru-500 transition-colors font-semibold text-slate-700">+62 877-4231-3827</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-biru-50 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-envelope text-biru-500"></i>
+                        </div>
+                        <a href="mailto:angkasarayateknik.project@gmail.com" class="hover:text-biru-500 transition-colors">angkasarayateknik.project@gmail.com</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 3. Menu & Layanan (Kanan) -->
+            <div class="lg:col-span-3 space-y-4">
+                <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wider mb-5">Tautan Cepat</h4>
+                <div class="grid grid-cols-2 gap-3 text-sm font-medium text-slate-500">
+                    <a href="#tentang" class="hover:text-biru-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-biru-500"></i> Tentang</a>
+                    <a href="#layanan" class="hover:text-biru-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-biru-500"></i> Layanan</a>
+                    <a href="#portofolio" class="hover:text-biru-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-biru-500"></i> Portofolio</a>
+                    <a href="#gallery" class="hover:text-biru-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-biru-500"></i> Gallery</a>
+                    <a href="#kontak" class="hover:text-biru-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-biru-500"></i> Kontak</a>
+                    <a href="#data-perusahaan" class="hover:text-biru-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-biru-500"></i> Legalitas</a>
+                </div>
+                <div class="pt-4">
+                    <span class="text-xs text-slate-400 block mb-2">Bidang Usaha:</span>
+                    <p class="text-xs font-medium text-slate-600">Electrical, Civil Engineering & IT</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Garis Pembatas & Copyright (Bawah) -->
+        <div class="divider-silver mb-8"></div>
+        <div class="flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+            <p>&copy; CV. Angkasa Raya Teknik</p>
+            <!-- <div class="flex items-center gap-1">
+                <span>Made with</span> 
+                <i class="fa-solid fa-heart text-merah-500 animate-pulse"></i> 
+                <span>for CV. Angkasa Raya Teknik</span>
+            </div> -->
+        </div>
+    </div>
+</footer>
+    <!-- ====== MODAL PORTOFOLIO APLIKASI ====== -->
+<div id="modal-portofolio" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="toggleModal()"></div>
+    
+    <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto transform transition-all scale-95 opacity-0" id="modal-content">
+        <!-- Header Modal -->
+        <div class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-silver-200 px-6 py-5 flex items-center justify-between z-10 rounded-t-3xl">
+            <div>
+                <h3 class="text-2xl font-bold text-slate-900">Aplikasi Portofolio IT</h3>
+                <p class="text-sm text-slate-500 mt-1">Sistem Informasi & Aplikasi Web yang telah kami bangun</p>
+            </div>
+            <button onclick="toggleModal()" class="w-10 h-10 rounded-full bg-silver-100 hover:bg-merah-50 hover:text-merah-500 text-slate-500 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Grid Aplikasi -->
+        <div class="p-6 grid md:grid-cols-2 gap-6">
+            
+            <!-- App 1 -->
+            <a href="https://sipjakikbb.com" target="_blank" class="group card-3d p-6 block border border-silver-200 hover:border-biru-500 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-biru-50 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <!-- Background putih & border agar logo warna asli terlihat jelas -->
+                <div class="w-14 h-14 rounded-xl bg-white border border-silver-200 flex items-center justify-center mb-4 shadow-sm group-hover:-translate-y-1 transition-transform p-1.5">
+                    <img src="assets/logo7.png" alt="SIPJAKIKBB" class="w-full h-full object-contain">
+                </div>
+                <h4 class="font-bold text-lg text-slate-900 mb-1">SIPJAKIKBB</h4>
+                <p class="text-xs font-semibold text-biru-500 mb-3 uppercase tracking-wide">DPUTR Kab. Bandung Barat</p>
+                <p class="text-sm text-slate-600 line-clamp-2">Sistem Informasi Pembina Jasa Konstruksi.</p>
+                <div class="mt-4 flex items-center text-xs font-bold text-slate-400 group-hover:text-biru-500 transition-colors">
+                    Kunjungi Aplikasi <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+            
+            <!-- App 2 -->
+            <a href="https://masjakidpupr.blorakab.go.id" target="_blank" class="group card-3d p-6 block border border-silver-200 hover:border-biru-500 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-biru-50 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <div class="w-14 h-14 rounded-xl bg-white border border-silver-200 flex items-center justify-center mb-4 shadow-sm group-hover:-translate-y-1 transition-transform p-1.5">
+                    <img src="assets/logo8.png" alt="MASJAKI BLORA" class="w-full h-full object-contain">
+                </div>
+                <h4 class="font-bold text-lg text-slate-900 mb-1">MASJAKI BLORA</h4>
+                <p class="text-xs font-semibold text-biru-500 mb-3 uppercase tracking-wide">DPUPR Kab. Blora</p>
+                <p class="text-sm text-slate-600 line-clamp-2">Sistem Informasi Pembina Jasa Konstruksi.</p>
+                <div class="mt-4 flex items-center text-xs font-bold text-slate-400 group-hover:text-biru-500 transition-colors">
+                    Kunjungi Aplikasi <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+            
+            <!-- App 3 -->
+            <a href="https://abgdpupr.blorakab.go.id" target="_blank" class="group card-3d p-6 block border border-silver-200 hover:border-biru-500 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-biru-50 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <div class="w-14 h-14 rounded-xl bg-white border border-silver-200 flex items-center justify-center mb-4 shadow-sm group-hover:-translate-y-1 transition-transform p-1.5">
+                    <img src="assets/logo8.png" alt="ABG BLORA" class="w-full h-full object-contain">
+                </div>
+                <h4 class="font-bold text-lg text-slate-900 mb-1">ABG BLORA</h4>
+                <p class="text-xs font-semibold text-biru-500 mb-3 uppercase tracking-wide">DPUPR Kab. Blora</p>
+                <p class="text-sm text-slate-600 line-clamp-2">Sistem Informasi Penyelenggaraan Bangunan Gedung Negara.</p>
+                <div class="mt-4 flex items-center text-xs font-bold text-slate-400 group-hover:text-biru-500 transition-colors">
+                    Kunjungi Aplikasi <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+            
+            <!-- App 4 -->
+            <a href="https://simpokdpuprblora.id" target="_blank" class="group card-3d p-6 block border border-silver-200 hover:border-biru-500 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-biru-50 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <div class="w-14 h-14 rounded-xl bg-white border border-silver-200 flex items-center justify-center mb-4 shadow-sm group-hover:-translate-y-1 transition-transform p-1.5">
+                    <img src="assets/logo8.png" alt="SIMPOK DPUPR" class="w-full h-full object-contain">
+                </div>
+                <h4 class="font-bold text-lg text-slate-900 mb-1">SIMPOK DPUPR</h4>
+                <p class="text-xs font-semibold text-biru-500 mb-3 uppercase tracking-wide">DPUPR Kab. Blora</p>
+                <p class="text-sm text-slate-600 line-clamp-2">Sistem Informasi Manajemen dan Pengendalian Operational Kegiatan.</p>
+                <div class="mt-4 flex items-center text-xs font-bold text-slate-400 group-hover:text-biru-500 transition-colors">
+                    Kunjungi Aplikasi <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>
+    <script>
+        // ===== Mobile Menu =====
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            hamburgerIcon.classList.remove('active');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamburgerIcon.classList.toggle('active');
+            hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) closeMenu();
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) closeMenu();
+        });
+
+        // ===== Hero Background Slideshow =====
+        (function () {
+            const slides = document.querySelectorAll('.hero-slide');
+            if (!slides.length) return;
+
+            const order = Array.from(slides.keys()).sort(() => Math.random() - 0.5);
+            let idx = 0;
+
+            function showNext() {
+                slides.forEach(s => s.classList.remove('active'));
+                slides[order[idx]].classList.add('active');
+                idx = (idx + 1) % order.length;
+            }
+
+            showNext();
+            setInterval(showNext, 4000);
+        })();
+
+        // ===== Modal Portofolio =====
+        function toggleModal() {
+            const modal = document.getElementById('modal-portofolio');
+            const content = document.getElementById('modal-content');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // Tutup modal klik luar
+        document.getElementById('modal-portofolio').addEventListener('click', function(e) {
+            if (e.target === this) toggleModal();
+        });
+    </script>
+</body>
+</html>
